@@ -1,5 +1,7 @@
 package com.serverdevsu.entity;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -19,12 +21,13 @@ import lombok.Setter;
 @NoArgsConstructor
 @Entity
 @Table(name="cliente")
-@PrimaryKeyJoinColumn(referencedColumnName = "persona_id")
-public class Cliente extends Persona{
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "cliente_id")
-	private Integer idcliente;
+//@PrimaryKeyJoinColumn(referencedColumnName = "persona_id")
+public class Cliente extends Persona implements Serializable{
+	/*@Id
+	//@GeneratedValue(strategy = GenerationType.IDENTITY)
+	//@PrimaryKeyJoinColumn(referencedColumnName = "cliente_id")
+	@Column(name = "persona_id")
+	private Integer idcliente;*/
 	@Column(name = "clave")
 	private String clave;
 	@Column(name = "estado")

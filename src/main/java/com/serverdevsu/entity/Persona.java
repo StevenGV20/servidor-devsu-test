@@ -19,11 +19,11 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 @Inheritance(strategy = InheritanceType.JOINED)
-@Entity(name="persona")
-//@Table(name="persona")
-public class Persona {
+@Entity
+@Table(name="persona")
+public abstract class Persona {
 
-	//@Id
+	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "persona_id")
 	private Integer idpersona;
