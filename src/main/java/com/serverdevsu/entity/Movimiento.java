@@ -1,5 +1,7 @@
 package com.serverdevsu.entity;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -33,16 +35,16 @@ public class Movimiento {
 	@Column(name = "movimiento_id")
 	private Integer idmovimiento;
 	
-	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-	@Timestamp(value = "yyyy-MM-dd HH:mm:ss")
-	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+	@JsonFormat(pattern = "dd/mm/yyyy")
+	@Timestamp(value = "dd/mm/yyyy")
+	@DateTimeFormat(pattern = "dd/mm/yyyy")
 	@Column(name = "fecha_registro")
-	private String fechaRegistro;
+	private Date fechaRegistro = new Date();
 	
 	@Column(name = "tipo_movimiento")
 	private String tipoMovimiento;
 	
-	private Double valor;
+	private String valor;
 	private Double saldo;
 	
 	@JsonIgnoreProperties({"hibernateLazyInitializer","handler"})

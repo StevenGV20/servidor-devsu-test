@@ -1,6 +1,7 @@
 package com.serverdevsu.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,6 +28,21 @@ public class CuentaServiceImpl implements CuentaService{
 	@Override
 	public void deleteCuenta(Integer id) {
 		repository.deleteById(id);
+	}
+
+	@Override
+	public Optional<Cuenta> findCuentaById(Integer id) {
+		return repository.findById(id);
+	}
+
+	@Override
+	public Optional<Cuenta> findCuentaByNroCuenta(String nro) {
+		return repository.findCuentByNroCuenta(nro);
+	}
+
+	@Override
+	public void updateSaldo(Cuenta obj) {
+		repository.updateSaldo(obj.getSaldoDisponible(), obj.getIdcuenta());
 	}
 
 }

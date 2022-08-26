@@ -29,7 +29,7 @@ public class Cuenta {
 	@Column(name = "cuenta_id")
 	private Integer idcuenta;
 	
-	@Column(name = "numero_cuenta")
+	@Column(name = "numero_cuenta", unique = true)
 	private String numeroCuenta;
 	
 	@Column(name = "tipo_cuenta")
@@ -38,8 +38,11 @@ public class Cuenta {
 	@Column(name = "saldo_inicial")
 	private Double saldoInicial;
 	
-	private String estado;
+	@Column(name = "saldo_disponible")
+	private Double saldoDisponible;
 	
+	private Boolean estado;
+
 	@JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "cliente_id")

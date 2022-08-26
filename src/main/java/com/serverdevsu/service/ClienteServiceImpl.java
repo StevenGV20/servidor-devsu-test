@@ -40,4 +40,9 @@ public class ClienteServiceImpl implements ClienteService{
 		return repository.findById(id);
 	}
 
+	@Override
+	public Optional<Cliente> findClienteByIdentificacion(String ide, Integer id) {
+		return repository.findCuentByIdentificacion(ide, id);
+	}
+
 }

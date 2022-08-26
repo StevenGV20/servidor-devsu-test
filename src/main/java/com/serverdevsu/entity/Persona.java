@@ -30,6 +30,7 @@ public abstract class Persona {
 	private String nombres;
 	private String genero;
 	private int edad;
+	@Column(unique = true)
 	private String identificacion;
 	private String direccion;
 	private String telefono;
