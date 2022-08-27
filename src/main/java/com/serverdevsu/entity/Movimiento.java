@@ -35,11 +35,11 @@ public class Movimiento {
 	@Column(name = "movimiento_id")
 	private Integer idmovimiento;
 	
-	@JsonFormat(pattern = "dd/mm/yyyy")
-	@Timestamp(value = "dd/mm/yyyy")
-	@DateTimeFormat(pattern = "dd/mm/yyyy")
+	@JsonFormat(pattern = "dd/MM/yyyy")
+	@Timestamp(value = "dd/MM/yyyy")
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	@Column(name = "fecha_registro")
-	private Date fechaRegistro = new Date();
+	private Date fechaRegistro;
 	
 	@Column(name = "tipo_movimiento")
 	private String tipoMovimiento;

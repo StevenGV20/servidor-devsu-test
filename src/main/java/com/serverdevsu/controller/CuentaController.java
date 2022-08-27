@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.serverdevsu.entity.Cuenta;
@@ -23,7 +24,8 @@ import com.serverdevsu.utils.Constantes;
 
 @RestController
 @RequestMapping("/cuentas")
-@CrossOrigin(origins = {"http://localhost:3000","http://localhost:3001"})
+@CrossOrigin(origins = "*", 
+	methods = {RequestMethod.GET,RequestMethod.POST,RequestMethod.PUT,RequestMethod.PATCH,RequestMethod.DELETE})
 public class CuentaController {
 
 	@Autowired
@@ -62,7 +64,7 @@ public class CuentaController {
 	public ResponseEntity<?> saveCuenta(@RequestBody Cuenta obj) {
 		try {
 			if(!serviceCliente.findClienteById(obj.getCliente().getIdpersona()).isPresent()) {
-				return Constantes.mensaje(HttpStatus.BAD_REQUEST, "Error", "No se encontro ningun cliente con el id "+obj.getCliente().getIdpersona());
+				return Constantes.mensaje(HttpStatus.BAD_REQUEST, "Error - No existe", "No se encontro ningun cliente con el id "+obj.getCliente().getIdpersona());
 			}
 			if(obj.getIdcuenta()==null) obj.setSaldoDisponible(obj.getSaldoInicial());
 			return ResponseEntity.ok(serviceCuenta.saveCuenta(obj));
@@ -96,7 +98,7 @@ public class CuentaController {
 				serviceCuenta.deleteCuenta(id);		
 				return Constantes.mensaje(HttpStatus.ACCEPTED, "Successful", "Se elimino correctamente la cuenta "+cuenta.get().getNumeroCuenta());
 			}else {
-				return Constantes.mensaje(HttpStatus.BAD_REQUEST, "Error", "No esta registrado este movimiento");
+				return Constantes.mensaje(HttpStatus.BAD_REQUEST, "Error", "No esta registrado esta cuenta");
 			}
 		}catch (Exception e) {
 			return Constantes.mensaje(HttpStatus.BAD_REQUEST, "Error", "Surgio un error: "+e.getMessage());

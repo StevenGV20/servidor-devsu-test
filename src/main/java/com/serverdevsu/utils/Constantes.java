@@ -14,6 +14,8 @@ public class Constantes {
 	public static final String MOVIMIENTO_VALOR_DEBITO="DEBITO";
 	public static final String MOVIMIENTO_VALOR_CREDITO="CREDITO";
 	
+	public static final String FECHA = "(0?[1-9]|[12][0-9]|3[01])/(0?[1-9]|1[012])/((19|20)\\d\\d)";
+	
 	public static ResponseEntity<?> mensaje(HttpStatus status,String title,String detail){
 		return ResponseEntity
 				.status(status)

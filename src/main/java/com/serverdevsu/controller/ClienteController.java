@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.serverdevsu.entity.Cliente;
@@ -22,7 +23,8 @@ import com.serverdevsu.utils.Constantes;
 
 @RestController
 @RequestMapping("/clientes")
-@CrossOrigin(origins = {"http://localhost:3000","http://localhost:3001"})
+@CrossOrigin(origins = "*", 
+	methods = {RequestMethod.GET,RequestMethod.POST,RequestMethod.PUT,RequestMethod.PATCH,RequestMethod.DELETE})
 public class ClienteController {
 
 	@Autowired
@@ -68,7 +70,7 @@ public class ClienteController {
 				return Constantes.mensaje(HttpStatus.BAD_REQUEST, "Error", "No has especificado a que cliente quieres modificar");
 			}
 			if(serviceCliente.findClienteByIdentificacion(cliente.getIdentificacion(),id).isPresent()) {
-				return Constantes.mensaje(HttpStatus.BAD_REQUEST, "Error", "Ya existe un cliente con identificacion "+cliente.getIdentificacion());
+				return Constantes.mensaje(HttpStatus.BAD_REQUEST, "Error - Identificacion", "Ya existe un cliente con identificacion "+cliente.getIdentificacion());
 			}
 			return ResponseEntity.ok(serviceCliente.saveCliente(cliente));
 		}

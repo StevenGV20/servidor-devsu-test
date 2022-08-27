@@ -66,12 +66,14 @@ public class MovimientoServiceImpl implements MovimientoService{
 		List<ReportMovimiento> listReport = new ArrayList<ReportMovimiento>();
 		ReportMovimiento report = null;
 		for (Movimiento obj : lista) {
+			SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
 			report = new ReportMovimiento();
 			report.setCliente(obj.getCuenta().getCliente().getNombres());
-			report.setFechaRegistro(obj.getFechaRegistro());
+			report.setFechaRegistro(format.format(obj.getFechaRegistro()).toString());
 			report.setMovimiento(obj.getSaldo());
 			report.setTipo(obj.getCuenta().getTipoCuenta());
 			report.setNumeroCuenta(obj.getCuenta().getNumeroCuenta());
+			report.setSaldoInicial(obj.getCuenta().getSaldoInicial());
 			report.setSaldoDisponible(obj.getCuenta().getSaldoDisponible());
 			report.setEstado(obj.getCuenta().getEstado());
 			listReport.add(report);
